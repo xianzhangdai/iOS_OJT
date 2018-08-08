@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Practice 2
+//  practice 4 navi
 //
-//  Created by xianzhang.dai on 2018/8/3.
+//  Created by xianzhang.dai on 2018/8/7.
 //  Copyright © 2018 xianzhang.dai. All rights reserved.
 //
 
@@ -16,7 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print("didFinishLaunchingWithOptions")
+        let VC=ViewController()
+        let NaviVC = UINavigationController(rootViewController: VC)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = NaviVC
+        self.window?.makeKeyAndVisible()
+       
         return true
     }
 
@@ -36,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("applicationDidBecomeActive")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
