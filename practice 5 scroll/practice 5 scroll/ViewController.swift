@@ -26,6 +26,7 @@ class ViewController: UIViewController ,UIScrollViewDelegate{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor(displayP3Red: 39 / 255, green: 47/255 , blue: 56/255, alpha: 1)
+        setupHeader()
         setupScroll(scr: scr1)
         setupView()
         setupLine()
@@ -45,6 +46,18 @@ class ViewController: UIViewController ,UIScrollViewDelegate{
         scr.showsHorizontalScrollIndicator = false
         scr.delegate = self
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let  offset = scrollView.contentOffset
+        
+        line.frame = CGRect(x: (offset.x / self.scr1.contentSize.width) * UIScreen.main.bounds.width,
+                            y: UIScreen.main.bounds.height - heightofImg - 8,
+                            width:(UIScreen.main.bounds.width / viewNum ) ,
+                            height: heightofLine)
+        
+        //print((offset.x / self.scr1.contentSize.width) * UIScreen.main.bounds.width)
+        //print("did scroll")
+        
+    }
     
     func setupView(){
         for i in 1...6 {
@@ -58,34 +71,57 @@ class ViewController: UIViewController ,UIScrollViewDelegate{
         
         self.scr1.contentSize = CGSize(width: UIScreen.main.bounds.width * 6, height:heightofImg)
     }
-    
-    func setupLine(){
+    func setupHeader(){
         let title = UILabel(frame: CGRect(x: 120, y: 12, width: 80, height: 50))
         title.text = "热门优惠"
         title.textColor = UIColor.white
         title.textAlignment = NSTextAlignment.center
+        self.view.addSubview(title)
+        
+        let button = UIButton(type: .custom)
+        
+        button.frame = CGRect(x: 280, y: 24, width: 25, height: 25)
+        button.setTitle("->", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = UIColor(displayP3Red: 249/255, green: 206/255, blue: 47/255, alpha: 1)
+        button.layer.cornerRadius = button.frame.size.width / 2;
+        button.layer.masksToBounds = true;
+        button.addTarget(self, action: #selector(Jump(_:)), for: UIControlEvents .touchUpInside)
+        self.view.addSubview(button)
+    }
+    @objc func Jump(_ sender: UIButton?) {
+        let vc2 = ViewController2()
+        self.present(vc2, animated: true, completion: nil)
+    }
+    
+    func setupLine(){
+//        UINavigationBar.appearance().tintColor = UIColor.lightGray
+//        navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
+//        self.NavSetting()
+        
         backLine.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - heightofImg - 8, width: UIScreen.main.bounds.width, height: heightofLine)
         backLine.layer.backgroundColor = UIColor.darkGray.cgColor
         line.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - heightofImg - 8, width:(UIScreen.main.bounds.width / viewNum ) , height: heightofLine)
         line.layer.backgroundColor = UIColor(displayP3Red: 249/255, green: 206/255, blue: 47/255, alpha: 1).cgColor
         line.layer.cornerRadius = lineRad
-        self.view.addSubview(title)
+       
         self.view.addSubview(backLine)
         self.view.addSubview(line)
     }
-
-     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       let  offset = scrollView.contentOffset
-        
-        line.frame = CGRect(x: (offset.x / self.scr1.contentSize.width) * UIScreen.main.bounds.width,
-                            y: UIScreen.main.bounds.height - heightofImg - 8,
-                            width:(UIScreen.main.bounds.width / viewNum ) ,
-                            height: heightofLine)
     
-        //print((offset.x / self.scr1.contentSize.width) * UIScreen.main.bounds.width)
-        //print("did scroll")
-        
-    }
+//    func NavSetting(){
+//        self.title = "热门优惠"
+////        let nextItem = UIBarButtonItem(title: "next", style: .plain, target: self, action: #selector(NextPage))
+////        self.navigationItem.rightBarButtonItem = nextItem
+////        UINavigationBar.appearance().tintColor = UIColor.lightGray
+////        navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
+//    }
+////    @objc func NextPage(){
+//        let vc2 = ViewController2()
+//        self.navigationController?.pushViewController(vc2, animated: true)
+//    }
+
+}
 //     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 //        print("will begin")
 //    }
@@ -97,7 +133,7 @@ class ViewController: UIViewController ,UIScrollViewDelegate{
 //     func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
 //        print("didchange")
 //    }
-}
+
 
 
 

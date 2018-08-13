@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  practice 5 scroll
+//  alamofirepractice
 //
-//  Created by xianzhang.dai on 2018/8/7.
+//  Created by xianzhang.dai on 2018/8/13.
 //  Copyright © 2018 xianzhang.dai. All rights reserved.
 //
 
@@ -16,13 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        
-//        let VC=ViewController()
-//        let NaviVC = UINavigationController(rootViewController: VC)
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        self.window?.rootViewController = NaviVC
-//        self.window?.makeKeyAndVisible()
-        
         return true
     }
 

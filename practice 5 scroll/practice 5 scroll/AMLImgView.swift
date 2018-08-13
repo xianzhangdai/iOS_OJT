@@ -13,6 +13,7 @@ class AMLImgView: UIView {
     let labArr2 :[Int] = [0,350,180,50]
     let labArr3 :[Int] = [0,400,180,50]
     let corRadDef : CGFloat = 10
+    
     var imgPath:String?
     {
         didSet {
@@ -39,8 +40,7 @@ class AMLImgView: UIView {
         animation.autoreverses = true
         animation.repeatCount = 50
         imgView!.layer.add(animation, forKey: nil)
-        print("view:\(imgView!.bounds.origin.y)")
-        print("layer:\(imgView!.layer.bounds.origin.y)")
+        
         labelSet()
         
         
